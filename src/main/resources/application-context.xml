@@ -16,9 +16,7 @@
         <constructor-arg value="yyyy-MM-dd" />
     </bean>
 
-    <bean id="StatEntityFactoryBean" class="com.springStatEntity.config.StatEntityFactoryBean"></bean>
-
-    <bean id="StatisticsBean" class="com.springStatEntity.bo.Statistics">
+     <bean id="StatisticsBean" class="com.springStatEntity.bo.Statistics">
          <property name="StatEntityList">
              <list>
                 <bean id="StatEntityBean1" class="com.springStatEntity.bo.StatEntity">

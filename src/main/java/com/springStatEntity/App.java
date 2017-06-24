@@ -1,5 +1,6 @@
 package com.springStatEntity;
 
+import com.utils.Calculations;
 import com.utils.GsonCreator;
 
 import java.io.IOException;
@@ -10,12 +11,20 @@ import java.io.IOException;
  */
 public class App {
     public static void main(String[] args) throws IOException {
-        //BeanFactory factory = new XmlBeanFactory(new ClassPathResource("application-context.xml"));
-       // Statistics statistics = (Statistics)factory.getBean("StatisticsBean");
+
         GsonCreator gsonCreator = new GsonCreator();
         gsonCreator.saveStatisticsInJson();
+        Calculations calculations = new Calculations();
 
-        //System.out.println(statistics.getStatEntityList().get(0).getName());
+        StringBuilder statMessages = new StringBuilder();
+        statMessages.append("Average name length = " + calculations.getAverageNameLength() + " | ");
+        statMessages.append("Min value = " + calculations.getMinValue() + " | ");
+        statMessages.append("Max value = " + calculations.getMaxValue() + " | ");
+        statMessages.append("Min date = " + calculations.getMinDate() + " | ");
+        statMessages.append("Max date = " + calculations.getMaxDate());
+
+        System.out.println(statMessages);
+        gsonCreator.writeToFile(statMessages.toString(), "src/main/resources/data/statCalculations.json");
 
     }
 

@@ -22,7 +22,7 @@
          <property name="StatEntityList">
              <list>
                 <bean id="StatEntityBean1" class="com.springStatEntity.bo.StatEntity">
-                 <property name="name" value="name1" />
+                 <property name="name" value="nameShort" />
                  <property name="value" value="1" />
                  <property name="date">
                      <bean factory-bean="dateFormat" factory-method="parse">
@@ -31,13 +31,22 @@
                  </property>
                 </bean>
                  <bean id="StatEntityBean2" class="com.springStatEntity.bo.StatEntity">
-                     <property name="name" value="name2" />
-                     <property name="value" value="2" />
+                     <property name="name" value="nameMiddle" />
+                     <property name="value" value="100" />
                      <property name="date">
                          <bean factory-bean="dateFormat" factory-method="parse">
                              <constructor-arg value="2011-01-31" />
                          </bean>
                      </property>
+                 </bean>
+                 <bean id="StatEntityBean3" class="com.springStatEntity.bo.StatEntity">
+                 <property name="name" value="nameLoooooonnnnnggggg" />
+                 <property name="value" value="1000" />
+                 <property name="date">
+                     <bean factory-bean="dateFormat" factory-method="parse">
+                         <constructor-arg value="2012-01-31" />
+                     </bean>
+                 </property>
                  </bean>
              </list>
          </property>

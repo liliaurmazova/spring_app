@@ -3,12 +3,12 @@ package com.utils;
 import com.google.gson.Gson;
 import com.springStatEntity.bo.StatEntity;
 import com.springStatEntity.bo.Statistics;
-import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.core.io.ClassPathResource;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -28,9 +28,31 @@ public class GsonCreator {
         return statEntityList;
     }
 
+
     public void saveStatisticsInJson() throws IOException {
         Gson gson = new Gson();
         String statJsonString = gson.toJson(getListFromBean());
-        FileUtils.writeStringToFile(new File("data/statistics.json"), statJsonString);
+        writeToFile(statJsonString);
+    }
+
+
+    private void writeToFile(String content){
+        File file = new File("src/main/resources/data/statistics.json");
+
+        try (FileOutputStream fileOutputStream = new FileOutputStream(file)) {
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            byte[] contentInBytes = content.getBytes();
+
+            fileOutputStream.write(contentInBytes);
+            fileOutputStream.flush();
+            fileOutputStream.close();
+
+            System.out.println("Json is saved to file");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

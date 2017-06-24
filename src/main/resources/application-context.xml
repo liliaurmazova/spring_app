@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+        "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean" >
+        <property name="converters">
+            <list>
+                <bean id="StringToStatEntityBean" class="com.springStatEntity.converter.StringToStatEntityConverter"></bean>
+                <bean id="StatEntityToStringBean" class="com.springStatEntity.converter.StatEntityToStringConverter"></bean>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="dateFormat" class="java.text.SimpleDateFormat">
+        <constructor-arg value="yyyy-MM-dd" />
+    </bean>
+
+    <bean id="StatEntityFactoryBean" class="com.springStatEntity.config.StatEntityFactoryBean"></bean>
+
+    <bean id="StatisticsBean" class="com.springStatEntity.bo.Statistics">
+         <property name="StatEntityList">
+             <list>
+                <bean id="StatEntityBean1" class="com.springStatEntity.bo.StatEntity">
+                 <property name="name" value="name1" />
+                 <property name="value" value="1" />
+                 <property name="date">
+                     <bean factory-bean="dateFormat" factory-method="parse">
+                         <constructor-arg value="2010-01-31" />
+                     </bean>
+                 </property>
+                </bean>
+                 <bean id="StatEntityBean2" class="com.springStatEntity.bo.StatEntity">
+                     <property name="name" value="name2" />
+                     <property name="value" value="2" />
+                     <property name="date">
+                         <bean factory-bean="dateFormat" factory-method="parse">
+                             <constructor-arg value="2011-01-31" />
+                         </bean>
+                     </property>
+                 </bean>
+             </list>
+         </property>
+    </bean>
+</beans>

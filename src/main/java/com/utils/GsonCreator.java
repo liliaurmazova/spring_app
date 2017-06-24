@@ -46,7 +46,7 @@ public class GsonCreator {
             fileOutputStream.flush();
             fileOutputStream.close();
 
-            System.out.println("Json is saved to file");
+            System.out.println("Json is saved to file " + path);
             System.out.println("Json file content is " + content);
 
         } catch (IOException e) {

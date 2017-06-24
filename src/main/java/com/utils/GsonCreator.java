@@ -1,6 +1,7 @@
 package com.utils;
 
 import com.google.gson.Gson;
+import com.springStatEntity.bo.StatResult;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -14,8 +15,21 @@ public class GsonCreator {
     public void saveStatisticsInJson() throws IOException {
         Gson gson = new Gson();
         BeanParser beanParser = new BeanParser();
+        Calculations calculations = new Calculations();
+
         String statJsonString = gson.toJson(beanParser.getListFromBean());
         writeToFile(statJsonString, "src/main/resources/data/sourceStatData.json");
+
+        StatResult statResult = new StatResult(
+                calculations.getAverageNameLength(),
+                calculations.getMinValue(),
+                calculations.getMaxValue(),
+                calculations.getMinDate(),
+                calculations.getMaxDate()
+        );
+        String caclulationsJsonString = gson.toJson(statResult);
+        writeToFile(caclulationsJsonString, "src/main/resources/data/statCalculations.json");
+
     }
 
 

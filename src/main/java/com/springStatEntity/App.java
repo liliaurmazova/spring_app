@@ -24,7 +24,6 @@ public class App {
         statMessages.append("Max date = " + calculations.getMaxDate());
 
         System.out.println(statMessages);
-        gsonCreator.writeToFile(statMessages.toString(), "src/main/resources/data/statCalculations.json");
 
     }
 
